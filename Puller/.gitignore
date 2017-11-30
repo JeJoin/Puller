@@ -1,0 +1,8 @@
+*.o
+*.exe
+*.sdf
+*.user
+objs
+Debug
+Release
+.vs
