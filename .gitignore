@@ -1,0 +1,7 @@
+*.o
+*.txt
+*.log
+Debug
+Release
+.vs
+
