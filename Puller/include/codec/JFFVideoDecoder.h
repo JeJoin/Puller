@@ -8,7 +8,13 @@
 
 #include <typedefs.h>
 
+extern "C" {
+#include <3rd\ffmpeg\libavcodec\avcodec.h>
+}
+
 namespace jcodec {
+
+class JFFVideoDecoderImpl;
 
 class DLL_EXPORT JIVideoDecodeCallback
 {
@@ -24,8 +30,12 @@ public:
     JFFVideoDecoder(JIVideoDecodeCallback* cb);
     virtual ~JFFVideoDecoder();
 
+    bool Init(AVCodecID codecID);
+
+    int32_t Decode(uint8_t* data, int32_t size, void * arg);
+
 private:
-    JIVideoDecodeCallback*      m_pCB;
+    JFFVideoDecoderImpl * m_pImpl;
 };
 
 }      // namespace jcodec

@@ -18,9 +18,15 @@
     <ClInclude Include="..\..\include\codec\JFFVideoDecoder.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\codec\impl\JFFVideoDecoder_impl.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\codec\JFFVideoDecoder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\codec\JFFVideoDecoder_impl.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
