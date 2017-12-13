@@ -1,6 +1,10 @@
 *.o
 *.txt
 *.log
+*.exe
+*.sdf
+*.TMP
+objs
 Debug
 Release
 .vs

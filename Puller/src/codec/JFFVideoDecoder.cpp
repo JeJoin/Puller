@@ -8,12 +8,11 @@ JFFVideoDecoder::JFFVideoDecoder(JIVideoDecodeCallback * cb)
 
 JFFVideoDecoder::~JFFVideoDecoder()
 {
-
 }
 
-bool JFFVideoDecoder::Init(AVCodecID codecID)
+bool JFFVideoDecoder::Init(VideoDecodeType type)
 {
-    return m_pImpl->Init(codecID);
+    return m_pImpl->Init(type);
 }
 
 int32_t JFFVideoDecoder::Decode(uint8_t* data, int32_t size, void * arg)

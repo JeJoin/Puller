@@ -1,5 +1,6 @@
 #ifndef _JFFVIDEODECODEC_H__
 #define _JFFVIDEODECODEC_H__
+
 /*
 * Description: ...
 * Aulthor: Jein(Jejoin)
@@ -8,11 +9,17 @@
 
 #include <typedefs.h>
 
-extern "C" {
-#include <3rd\ffmpeg\libavcodec\avcodec.h>
-}
-
 namespace jcodec {
+
+enum VideoDecodeType
+{
+	enH262,
+	enH263,
+	enH264,
+	enH265,
+	enAVS,
+	enWMS
+};
 
 class JFFVideoDecoderImpl;
 
@@ -30,7 +37,7 @@ public:
     JFFVideoDecoder(JIVideoDecodeCallback* cb);
     virtual ~JFFVideoDecoder();
 
-    bool Init(AVCodecID codecID);
+    bool Init(VideoDecodeType type);
 
     int32_t Decode(uint8_t* data, int32_t size, void * arg);
 
