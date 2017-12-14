@@ -1,5 +1,5 @@
 #include <codec/impl/JFFVideoDecoder_impl.h>
-#include <utils.h>
+#include <common/utils.h>
 
 #define MAX_IMAGE_WIDTH          1920
 #define MAX_IMAGE_HEIGHT         1080 
@@ -14,21 +14,21 @@ namespace jcodec {
 #pragma comment(lib, "PC/x86/libx264.a")
 
 
-JFFVideoDecoderImpl::JFFVideoDecoderImpl(JIVideoDecodeCallback* cb)
+JFFVideoDecoderImpl::JFFVideoDecoderImpl(JIVideoDecodeCallback* cb, void * arg)
     : m_pDecodeCB(cb)
     , m_pAVContext(NULL)
     , m_pAVPacket(NULL)
     , m_pAVFrame(NULL)
     , m_pAVCodec(NULL)
     , m_pYUV420(NULL)
+    , m_pOnDecArg(arg)
     , m_bInit(false)
 {
 	avcodec_register_all();
 }
 
 JFFVideoDecoderImpl::~JFFVideoDecoderImpl()
-{
-}
+{}
 
 bool JFFVideoDecoderImpl::Init(VideoDecodeType type)
 {
@@ -128,7 +128,29 @@ void JFFVideoDecoderImpl::_Release()
 
 int32_t JFFVideoDecoderImpl::Decode(uint8_t* data, int32_t size, void * arg)
 {
-    return 0;
+    if (data == NULL) {
+        return -1;
+    }
+    int ret = 0, got = 0;
+    m_pAVPacket->data = data;
+    m_pAVPacket.size  = size;
+    ret = avcodec_decode_video2(m_pAVContext, m_pAVFrame, &got, m_pAVPacket);
+    if (ret < 0) {
+        return ret;
+    }
+
+    if (got > 0) {
+        int w = m_pAVFrame->width;
+        int h = m_pAVFrame->height;
+        int ysize = w * h;
+        memcpy(m_pYUV420, m_pAVFrame->data[0], ysize);
+        memcpy(m_pYUV420 + ysize, m_pAVFrame->data[0], ysize>>2);
+        memcpy(m_pYUV420 + ysize + ysize >> 2, m_pAVFrame->data[0], ysize>>2);
+
+        m_pDecodeCB->OnVideoDecodeCallback(w, h, m_pYUV420, ysize * 2 >> 1, m_pOnDecArg);
+    }
+
+    return ret;
 }
 
 }

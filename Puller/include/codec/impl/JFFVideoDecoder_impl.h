@@ -1,7 +1,7 @@
 #ifndef __JFFVIDEODECODER_H__
 #define __JFFVIDEODECODER_H__
 
-#include <typedefs.h>
+#include <common/typedefs.h>
 #include <codec/JFFVideoDecoder.h>
 
 extern "C" {
@@ -14,7 +14,7 @@ class JIVideoDecodeCallback;
 class JFFVideoDecoderImpl
 {
 public:
-    JFFVideoDecoderImpl(JIVideoDecodeCallback* cb);
+    JFFVideoDecoderImpl(JIVideoDecodeCallback* cb, void * arg);
 
     virtual ~JFFVideoDecoderImpl();
 
@@ -33,8 +33,8 @@ private:
     AVPacket *              m_pAVPacket;
     AVFrame *               m_pAVFrame;
     AVCodec *               m_pAVCodec;
-
     uint8_t *               m_pYUV420;
+    void *                  m_pOnDecArg;
     bool                    m_bInit;
 };
 

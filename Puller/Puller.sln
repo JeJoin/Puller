@@ -1,9 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.14
+VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "project\test\test.vcxproj", "{A9FBD9F5-4DF5-4A4F-893D-FFE9371E1197}"
+	ProjectSection(ProjectDependencies) = postProject
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB} = {EE3DA08E-77F3-4A72-9187-88AEC9765EBB}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "project\core\core.vcxproj", "{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}"
 EndProject
@@ -48,5 +51,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3D673972-2E37-444C-8A4B-53648096F404}
 	EndGlobalSection
 EndGlobal

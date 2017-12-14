@@ -22,16 +22,19 @@
     <Filter Include="头文件\common">
       <UniqueIdentifier>{f3c1c012-3278-4476-86a0-f3beb49724f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\common">
+      <UniqueIdentifier>{d9d5540d-c0b0-4bdd-b2d3-61ebd4866a36}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\utils.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\src\codec\JFFVideoDecoder.cpp">
       <Filter>源文件\codec</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\codec\JFFVideoDecoder_impl.cpp">
       <Filter>源文件\codec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\utils.cpp">
+      <Filter>源文件\common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

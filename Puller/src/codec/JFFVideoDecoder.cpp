@@ -2,8 +2,8 @@
 #include <codec/impl/JFFVideoDecoder_impl.h>
 
 namespace jcodec {
-JFFVideoDecoder::JFFVideoDecoder(JIVideoDecodeCallback * cb)
-    : m_pImpl(new JFFVideoDecoderImpl(cb))
+JFFVideoDecoder::JFFVideoDecoder(JIVideoDecodeCallback * cb, void * arg)
+    : m_pImpl(new JFFVideoDecoderImpl(cb, arg))
 {}
 
 JFFVideoDecoder::~JFFVideoDecoder()

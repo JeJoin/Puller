@@ -7,8 +7,15 @@
 * Create on 12/8/2017
 **/
 
-#include <typedefs.h>
+#include <common/typedefs.h>
 
+class DLL_EXPORT JIVideoDecodeCallback
+{
+public:
+    virtual ~JIVideoDecodeCallback() {}
+    virtual void OnVideoDecodeCallback(int32_t width, int32_t height,
+                        uint8_t * pdata, int32_t size, void * arg) = 0;
+};
 namespace jcodec {
 
 enum VideoDecodeType
@@ -22,18 +29,10 @@ enum VideoDecodeType
 
 class JFFVideoDecoderImpl;
 
-class DLL_EXPORT JIVideoDecodeCallback
-{
-public:
-    virtual ~JIVideoDecodeCallback() {}
-    virtual void OnVideoDecodeCallback(int32_t width, int32_t height,
-                        uint8_t * pdata, int32_t size, void * arg) = 0;
-};
-
 class DLL_EXPORT JFFVideoDecoder
 {
 public:
-    JFFVideoDecoder(JIVideoDecodeCallback* cb);
+    JFFVideoDecoder(JIVideoDecodeCallback* cb, void * arg = NULL);
     virtual ~JFFVideoDecoder();
 
     bool Init(VideoDecodeType type);
