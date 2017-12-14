@@ -23,7 +23,7 @@
     <ProjectGuid>{C5062C10-8916-4609-AFA2-9363E54E1660}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>codec</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.16299.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,8 +72,9 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)objs\$(ProjectName)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)objs\$(ProjectName)\link\$(Platform)\$(Configuration)\</OutDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)include;</IncludePath>
+    <IntDir>$(SolutionDir)\objs\$(ProjectName)\compile\$(Platform)\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -90,7 +91,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CODEC_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;CODEC_EXPORTS;%(PreprocessorDefinitions);WIN_PLATFORM</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>d:\Program Files (x86)\Visual Leak Detector\include;%(AdditionalIncludeDirectories);$(SolutionDir)include;$(SolutionDir)include\3rd\ffmpeg</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>

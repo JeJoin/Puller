@@ -13,12 +13,11 @@ namespace jcodec {
 
 enum VideoDecodeType
 {
-	enH262,
+	enH261,
 	enH263,
 	enH264,
 	enH265,
-	enAVS,
-	enWMS
+	enAVS
 };
 
 class JFFVideoDecoderImpl;

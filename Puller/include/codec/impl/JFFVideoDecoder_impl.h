@@ -23,10 +23,19 @@ public:
     int32_t Decode(uint8_t* data, int32_t size, void * arg);
 
 private:
-	bool _InitH264Decoder();
+	bool _InitDecoder(AVCodecID codecID);
+
+    void _Release();
 
 private:
     JIVideoDecodeCallback * m_pDecodeCB;
+    AVCodecContext *        m_pAVContext;
+    AVPacket *              m_pAVPacket;
+    AVFrame *               m_pAVFrame;
+    AVCodec *               m_pAVCodec;
+
+    uint8_t *               m_pYUV420;
+    bool                    m_bInit;
 };
 
 

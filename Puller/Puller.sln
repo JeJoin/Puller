@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "project\test\test.vcxproj", "{A9FBD9F5-4DF5-4A4F-893D-FFE9371E1197}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "core", "project\core\core.vcxproj", "{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}"
+EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "codec", "project\codec\codec.vcxproj", "{C5062C10-8916-4609-AFA2-9363E54E1660}"
 EndProject
 Global
@@ -23,14 +25,26 @@ Global
 		{A9FBD9F5-4DF5-4A4F-893D-FFE9371E1197}.Release|x64.Build.0 = Release|x64
 		{A9FBD9F5-4DF5-4A4F-893D-FFE9371E1197}.Release|x86.ActiveCfg = Release|Win32
 		{A9FBD9F5-4DF5-4A4F-893D-FFE9371E1197}.Release|x86.Build.0 = Release|Win32
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Debug|x64.ActiveCfg = Debug|x64
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Debug|x64.Build.0 = Debug|x64
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Debug|x86.ActiveCfg = Debug|Win32
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Debug|x86.Build.0 = Debug|Win32
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Release|x64.ActiveCfg = Release|x64
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Release|x64.Build.0 = Release|x64
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Release|x86.ActiveCfg = Release|Win32
+		{EE3DA08E-77F3-4A72-9187-88AEC9765EBB}.Release|x86.Build.0 = Release|Win32
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Debug|x64.ActiveCfg = Debug|x64
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Debug|x64.Build.0 = Debug|x64
+		{C5062C10-8916-4609-AFA2-9363E54E1660}.Debug|x64.Deploy.0 = Debug|x64
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Debug|x86.ActiveCfg = Debug|Win32
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Debug|x86.Build.0 = Debug|Win32
+		{C5062C10-8916-4609-AFA2-9363E54E1660}.Debug|x86.Deploy.0 = Debug|Win32
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Release|x64.ActiveCfg = Release|x64
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Release|x64.Build.0 = Release|x64
+		{C5062C10-8916-4609-AFA2-9363E54E1660}.Release|x64.Deploy.0 = Release|x64
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Release|x86.ActiveCfg = Release|Win32
 		{C5062C10-8916-4609-AFA2-9363E54E1660}.Release|x86.Build.0 = Release|Win32
+		{C5062C10-8916-4609-AFA2-9363E54E1660}.Release|x86.Deploy.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
