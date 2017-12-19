@@ -72,8 +72,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)objs\$(ProjectName)\link\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)\objs\$(ProjectName)\compile\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)\objs\$(Platform)\link\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\objs\$(Platform)\compile\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>

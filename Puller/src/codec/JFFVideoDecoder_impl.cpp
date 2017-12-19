@@ -133,7 +133,7 @@ int32_t JFFVideoDecoderImpl::Decode(uint8_t* data, int32_t size, void * arg)
     }
     int ret = 0, got = 0;
     m_pAVPacket->data = data;
-    m_pAVPacket.size  = size;
+    m_pAVPacket->size  = size;
     ret = avcodec_decode_video2(m_pAVContext, m_pAVFrame, &got, m_pAVPacket);
     if (ret < 0) {
         return ret;
@@ -145,9 +145,11 @@ int32_t JFFVideoDecoderImpl::Decode(uint8_t* data, int32_t size, void * arg)
         int ysize = w * h;
         memcpy(m_pYUV420, m_pAVFrame->data[0], ysize);
         memcpy(m_pYUV420 + ysize, m_pAVFrame->data[0], ysize>>2);
-        memcpy(m_pYUV420 + ysize + ysize >> 2, m_pAVFrame->data[0], ysize>>2);
+        memcpy(m_pYUV420 + ysize + (ysize >> 2), m_pAVFrame->data[0], ysize>>2);
 
-        m_pDecodeCB->OnVideoDecodeCallback(w, h, m_pYUV420, ysize * 2 >> 1, m_pOnDecArg);
+        if (m_pDecodeCB != NULL) {
+            m_pDecodeCB->OnVideoDecodeCallback(w, h, m_pYUV420, ysize * 2 >> 1, m_pOnDecArg);
+        }
     }
 
     return ret;

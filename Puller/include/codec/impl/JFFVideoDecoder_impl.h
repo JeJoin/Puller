@@ -7,9 +7,10 @@
 extern "C" {
 #include <3rd\ffmpeg\libavcodec\avcodec.h>
 }
-namespace jcodec {
 
 class JIVideoDecodeCallback;
+
+namespace jcodec {
 
 class JFFVideoDecoderImpl
 {
