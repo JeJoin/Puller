@@ -15,7 +15,8 @@ namespace jcodec {
 
 
 JFFVideoDecoderImpl::JFFVideoDecoderImpl(JIVideoDecodeCallback* cb, void * arg)
-    : m_pDecodeCB(cb)
+    : m_codecID(AV_CODEC_ID_NONE)
+    , m_pDecodeCB(cb)
     , m_pAVContext(NULL)
     , m_pAVPacket(NULL)
     , m_pAVFrame(NULL)
@@ -53,6 +54,7 @@ bool JFFVideoDecoderImpl::Init(VideoDecodeType type)
 	default:
 		break;
 	}
+    m_codecID = codecID;
     return _InitDecoder(codecID);
 }
 
@@ -77,7 +79,7 @@ bool JFFVideoDecoderImpl::_InitDecoder(AVCodecID codecID)
         goto failed;
     }
 
-    m_pAVCodec = avcodec_find_decoder(AV_CODEC_ID_H264);
+    m_pAVCodec = avcodec_find_decoder(m_codecID);
     if (m_pAVCodec == NULL) {
         goto failed;
     }
@@ -86,6 +88,10 @@ bool JFFVideoDecoderImpl::_InitDecoder(AVCodecID codecID)
     if (m_pAVContext == NULL) {
         goto failed;
     }
+
+    m_pAVContext->codec_id   = m_codecID;
+    m_pAVContext->codec_type = AVMEDIA_TYPE_VIDEO;
+    m_pAVContext->pix_fmt    = AV_PIX_FMT_YUV420P;
 
     if (avcodec_open2(m_pAVContext, m_pAVCodec, NULL) < 0) {
         goto failed;
@@ -139,17 +145,16 @@ int32_t JFFVideoDecoderImpl::Decode(uint8_t* data, int32_t size, void * arg)
         return ret;
     }
 
-    if (got > 0) {
-        int w = m_pAVFrame->width;
-        int h = m_pAVFrame->height;
-        int ysize = w * h;
-        memcpy(m_pYUV420, m_pAVFrame->data[0], ysize);
-        memcpy(m_pYUV420 + ysize, m_pAVFrame->data[0], ysize>>2);
-        memcpy(m_pYUV420 + ysize + (ysize >> 2), m_pAVFrame->data[0], ysize>>2);
+    int w     = m_pAVFrame->width;
+    int h     = m_pAVFrame->height;
+    int ysize = w * h;
 
-        if (m_pDecodeCB != NULL) {
-            m_pDecodeCB->OnVideoDecodeCallback(w, h, m_pYUV420, ysize * 2 >> 1, m_pOnDecArg);
-        }
+    memcpy(m_pYUV420, m_pAVFrame->data[0], ysize);
+    memcpy(m_pYUV420 + ysize, m_pAVFrame->data[0], ysize >> 2);
+    memcpy(m_pYUV420 + ysize + (ysize >> 2), m_pAVFrame->data[0], ysize >> 2);
+
+    if (m_pDecodeCB != NULL) {
+        m_pDecodeCB->OnVideoDecodeCallback(w, h, m_pYUV420, ysize * 2 >> 1, m_pOnDecArg);
     }
 
     return ret;

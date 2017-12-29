@@ -1,4 +1,6 @@
 #include <codec\JFFVideoDecoder.h>
+#include <io.h>
+
 
 class VideoDecodeCallback : public JIVideoDecodeCallback
 {
@@ -12,7 +14,15 @@ public:
 void VideoDecodeCallback::OnVideoDecodeCallback(int32_t w, int32_t h,
                             uint8_t * data, int32_t size, void * arg)
 {
+    char filepath[128] = {0};
+    sprintf(filepath, "yuv420_%d_%d.yuv", w, h);
 
+    FILE* fp = fopen(filepath, "wb");
+    if (NULL == fp) {
+        return;
+    }
+    fwrite(data, size, 1, fp);
+    fclose(fp);
 }
 
 void test_video_decode()
@@ -22,16 +32,18 @@ void test_video_decode()
     jcodec::JFFVideoDecoder JVideoDecoder(&cb);
     JVideoDecoder.Init(jcodec::enH264);
 
-    FILE* vfp = fopen("pic_640_480.h264", "rb");
-    if (vfp == NULL) {
+    FILE* fp = fopen("pic_640_480.h264", "rb");
+    if (fp == NULL) {
         printf("open file error.\n");
         return;
     }
-    fseek(vfp, 4, SEEK_SET);
-    fread(&nal_header, 1, 1, vfp);
 
-    uint8_t nul_unit_type = nal_header & 0x1F;
-    printf("nul_unit_type: %d\n", nul_unit_type);
+    int filesize = filelength(fileno(fp));
+    uint8_t *buf = new uint8_t[filesize];
 
-    fclose(vfp);
+    fread(buf, filesize, 1, fp);
+    JVideoDecoder.Decode(buf, filesize, NULL);
+    
+    delete[] buf;
+    fclose(fp);
 }

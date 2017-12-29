@@ -29,6 +29,8 @@ private:
     void _Release();
 
 private:
+    AVCodecID               m_codecID;
+
     JIVideoDecodeCallback * m_pDecodeCB;
     AVCodecContext *        m_pAVContext;
     AVPacket *              m_pAVPacket;
