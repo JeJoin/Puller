@@ -41,10 +41,10 @@
     <ClInclude Include="..\..\include\codec\impl\JFFVideoDecoder_impl.h">
       <Filter>头文件\codec</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\typedefs.h">
+    <ClInclude Include="..\..\include\common\typedefs.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\include\utils.h">
+    <ClInclude Include="..\..\include\common\utils.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
   </ItemGroup>

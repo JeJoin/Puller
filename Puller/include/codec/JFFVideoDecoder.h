@@ -1,11 +1,9 @@
+/**
+* JFFVideoDecoder.h
+* Created by JeJoin(Jein) on 12/8/2017 FRI
+*/
 #ifndef _JFFVIDEODECODEC_H__
 #define _JFFVIDEODECODEC_H__
-
-/*
-* Description: ...
-* Aulthor: Jein(Jejoin)
-* Create on 12/8/2017
-**/
 
 #include <common/typedefs.h>
 

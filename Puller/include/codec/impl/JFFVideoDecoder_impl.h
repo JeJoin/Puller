@@ -1,3 +1,8 @@
+/**
+* JFFVideoDecoder_impl.h
+* Created by JeJoin(Jein) on 12/8/2017 FRI
+*/
+
 #ifndef __JFFVIDEODECODER_H__
 #define __JFFVIDEODECODER_H__
 

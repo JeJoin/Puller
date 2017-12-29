@@ -149,8 +149,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\codec\impl\JFFVideoDecoder_impl.h" />
-    <ClInclude Include="..\..\include\typedefs.h" />
-    <ClInclude Include="..\..\include\utils.h" />
+    <ClInclude Include="..\..\include\common\typedefs.h" />
+    <ClInclude Include="..\..\include\common\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,3 +1,7 @@
+/**
+* JFFVideoDecoder_impl.cpp
+* Created by JeJoin(Jein) on 12/8/2017 FRI
+*/
 #include <codec/impl/JFFVideoDecoder_impl.h>
 #include <common/utils.h>
 
