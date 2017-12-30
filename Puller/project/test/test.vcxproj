@@ -23,7 +23,7 @@
     <ProjectGuid>{A9FBD9F5-4DF5-4A4F-893D-FFE9371E1197}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>test</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0.15063.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -72,12 +72,14 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>$(SolutionDir)\objs\$(Platform)\test_link\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)\objs\link\$(Platform)\$(Configuration)\$(ProjectName)\</OutDir>
     <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(SolutionDir)include;</IncludePath>
-    <IntDir>$(SolutionDir)\objs\$(Platform)\test_compile\$(Configuration)\</IntDir>
+    <IntDir>$(SolutionDir)\objs\compile\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <OutDir>$(SolutionDir)\objs\$(Platform)\test_link\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)\objs\$(Platform)\test_compile\$(Configuration)\</IntDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -92,11 +94,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\QT\Qt5.9.0\5.9\winrt_x86_msvc2017\include\QtANGLE;$(SolutionDir)include;D:\QT\Qt5.9.0\5.9\winrt_x86_msvc2017\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>d:\Program Files (x86)\Visual Leak Detector\lib\Win32;%(AdditionalLibraryDirectories);$(SolutionDir)\objs\$(Platform)\link\$(Configuration)\</AdditionalLibraryDirectories>
-      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);core.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>d:\Program Files (x86)\Visual Leak Detector\lib\Win32;D:\QT\Qt5.9.0\5.9\winrt_x86_msvc2017\lib;%(AdditionalLibraryDirectories);$(SolutionDir)\objs\$(Platform)\link\$(Configuration)\</AdditionalLibraryDirectories>
+      <AdditionalDependencies>kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies);core.lib;Qt5Core.lib;Qt5Widgets.lib</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -106,9 +109,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>D:\QT\Qt5.9.0\5.9\winrt_x86_msvc2017\include\QtANGLE;$(SolutionDir)include;D:\QT\Qt5.9.0\5.9\msvc2017_64\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalLibraryDirectories>D:\QT\Qt5.9.0\5.9\msvc2017_64\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>Qt5Widgets.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -146,6 +152,7 @@
   <ItemGroup>
     <ClCompile Include="..\..\src\test\main.cpp" />
     <ClCompile Include="..\..\src\test\test_video_decode.cpp" />
+    <ClCompile Include="..\..\src\test\test_video_renderer.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

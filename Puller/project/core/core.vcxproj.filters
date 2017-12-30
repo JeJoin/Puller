@@ -25,6 +25,12 @@
     <Filter Include="源文件\common">
       <UniqueIdentifier>{d9d5540d-c0b0-4bdd-b2d3-61ebd4866a36}</UniqueIdentifier>
     </Filter>
+    <Filter Include="源文件\render">
+      <UniqueIdentifier>{7680671e-8b7b-46e3-9ee0-83d4dc99fa78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\render">
+      <UniqueIdentifier>{a3af86f2-13df-4360-88af-614248aff257}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\src\codec\JFFVideoDecoder.cpp">
@@ -36,15 +42,27 @@
     <ClCompile Include="..\..\src\utils.cpp">
       <Filter>源文件\common</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\render\D3DVideoRender.cpp">
+      <Filter>源文件\render</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\common\imgutils.cpp">
+      <Filter>源文件\common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\include\codec\impl\JFFVideoDecoder_impl.h">
       <Filter>头文件\codec</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\include\render\D3DVideoRender.h">
+      <Filter>头文件\render</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\include\common\typedefs.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
     <ClInclude Include="..\..\include\common\utils.h">
+      <Filter>头文件\common</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\include\common\imgutils.h">
       <Filter>头文件\common</Filter>
     </ClInclude>
   </ItemGroup>
