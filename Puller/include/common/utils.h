@@ -93,7 +93,6 @@ void bzero(void * ptr, size_t n);
     } while (0)
 #else
     
-#define INVALID_SOCKET          (-1)
 #define ISVALID_SOCKET(sock)    (sock >= 0)
     
 #define SAFE_CLOSESOCKET(sock)      \

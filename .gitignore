@@ -1,6 +1,7 @@
 *.o
 *.txt
 *.log
+!bug.log
 *.exe
 *.sdf
 *.TMP

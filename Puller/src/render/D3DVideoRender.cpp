@@ -26,13 +26,13 @@ D3DVideoRender::~D3DVideoRender()
 
 int32_t D3DVideoRender::Open(int32_t width, int32_t height, const void * hwnd)
 {
-    if (width <= 0 || height <= 0) {
+    if (hwnd == NULL || width <= 0 || height <= 0) {
         return -1;
     }
-    m_hwnd    = (HWND)hwnd;
 
-    D3DPRESENT_PARAMETERS d3dParams = {};
+    m_hwnd = (HWND)hwnd;
     
+    D3DPRESENT_PARAMETERS d3dParams = {}; // fix warning of init d3dParams
     m_pIDirect3D9 = Direct3DCreate9(D3D_SDK_VERSION);
     if (m_pIDirect3D9 == NULL) {
         goto fault;
@@ -41,7 +41,7 @@ int32_t D3DVideoRender::Open(int32_t width, int32_t height, const void * hwnd)
     d3dParams.Windowed   = TRUE;
     d3dParams.SwapEffect = D3DSWAPEFFECT_COPY;
 
-    IDirect3DDevice9 * pD3DDevice;
+    IDirect3DDevice9 * pD3DDevice = NULL;
     if (m_pIDirect3D9->CreateDevice(D3DADAPTER_DEFAULT,
                                     D3DDEVTYPE_HAL,
                                     m_hwnd,
@@ -53,12 +53,22 @@ int32_t D3DVideoRender::Open(int32_t width, int32_t height, const void * hwnd)
 
     m_pD3DDevice = pD3DDevice;
     pD3DDevice->Release();
+    ////校验硬件顶点运算  
+    //D3DCAPS9 caps;
+    //m_pIDirect3D9->GetDeviceCaps(D3DADAPTER_DEFAULT, D3DDEVTYPE_HAL, &caps);
+
+    //int vp = 0;
+    //if (caps.DevCaps & D3DDEVCAPS_HWTRANSFORMANDLIGHT)
+    //    vp = D3DCREATE_HARDWARE_VERTEXPROCESSING;
+    //else
+    //    vp = D3DCREATE_SOFTWARE_VERTEXPROCESSING;
 
     IDirect3DVertexBuffer9* pVertexBuffer;
     const int kRectVertices = 4;
-    if (pD3DDevice->CreateVertexBuffer(kRectVertices * sizeof(D3dCustomVertex),
+    if (m_pD3DDevice->CreateVertexBuffer(kRectVertices * sizeof(D3dCustomVertex),
                                        0,
                                        D3DFVF_CUSTOMVERTEX,
+                                       //vp,
                                        D3DPOOL_MANAGED,
                                        &pVertexBuffer,
                                        NULL) != D3D_OK) {

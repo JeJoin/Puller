@@ -26,7 +26,6 @@ void VideoDecodeCallback::OnVideoDecodeCallback(int32_t w, int32_t h,
 
 void test_video_decode()
 {
-    int16_t buf = 0;
     uint8_t nal_header = 0;
     VideoDecodeCallback cb;
     int32_t width = 0, height = 0;
@@ -42,9 +41,9 @@ void test_video_decode()
     }
 
     int filesize = filelength(fileno(fp));
-    uint8_t *buf = new uint8_t[filesize];
+    char *buf = new char[filesize];
     fread(buf, filesize, 1, fp);
-    JVideoDecoder.Decode(buf, filesize, NULL);
+    JVideoDecoder.Decode((uint8_t*)buf, filesize, NULL);
     
     delete[] buf;
     fclose(fp);

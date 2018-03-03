@@ -12,7 +12,7 @@ void test_video_renderer(int argc, char * argv[])
     w.show();
     HWND hwnd = (HWND)w.winId();
 
-    FILE* fp = fopen("sintel_640_360.yuv", "rb");
+    FILE* fp = fopen("../../../res/sintel_640_360.yuv", "rb");
     if (fp == NULL) {
         printf("open file error\n");
         return;
